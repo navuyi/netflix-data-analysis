@@ -1,13 +1,13 @@
 library("lubridate")
 
-csv_files = list.files("../csv")
+csv_files = list.files("./csv")
 DATE_FORMAT = "%Y-%m-%dT%H:%M:%OS"
 
 output_assessment <- c()
 output_mean_vmaf <- c()
 
 for(file in csv_files){
-  data <- read.csv(file.path("../csv", file))
+  data <- read.csv(file.path("./csv", file))
   
   playing_vmaf = data$playing_vmaf
   timestamp = data$timestamp
