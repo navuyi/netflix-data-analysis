@@ -96,4 +96,5 @@ def vmaf_plot():
 
     plt.gcf().set_size_inches(6, 8)
     plt.tight_layout()
-    plt.show()
+
+    return plt
