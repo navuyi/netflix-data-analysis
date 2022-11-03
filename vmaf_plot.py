@@ -57,44 +57,46 @@ def vmaf_plot():
     real_vmaf = vmaf_real_histogram()
     buff_vmaf = vmaf_buff_histogram()
 
-    ax1 = plt.subplot(411)
-    plt.step(scenario_vmaf[0], scenario_vmaf[1], 'r', where='post')
+    fig1, (ax1a, ax1b, ax1c, ax1d) = plt.subplots(nrows=4, ncols=1, sharex='all', sharey='all')
+
+    ax1a.plot(411)
+    ax1a.step(scenario_vmaf[0], scenario_vmaf[1], 'r', where='post')
 
     if int(buff_vmaf[0][-1]) > int(scenario_vmaf[0][-1]):
-        plt.axis([0, buff_vmaf[0][-1], 0, 105])
-        plt.xticks(np.arange(0, buff_vmaf[0][-1] + 150, 150))
+        ax1a.axis([0, buff_vmaf[0][-1], 0, 105])
+        ax1a.set_xticks(np.arange(0, buff_vmaf[0][-1] + 150, 300))
     else:
-        plt.axis([0, scenario_vmaf[0][-1], 0, 110])
-        plt.xticks(np.arange(0, scenario_vmaf[0][-1] + 150, 150))
+        ax1a.axis([0, scenario_vmaf[0][-1], 0, 110])
+        ax1a.set_xticks(np.arange(0, scenario_vmaf[0][-1] + 150, 150))
 
-    plt.yticks(np.arange(0, 101, 20))
+    ax1a.set_yticks(np.arange(0, 101, 20))
 
-    plt.title('VMAF template', fontsize=10)
-    plt.xlabel('video duration')
-    plt.ylabel('VMAF')
+    ax1a.set_title('VMAF template', fontsize=10)
+    ax1a.set_xlabel('video duration')
+    ax1a.set_ylabel('VMAF')
 
-    plt.subplot(412, sharex=ax1, sharey=ax1)
-    plt.step(scenario_vmaf[0], scenario_vmaf[2], 'y', where='post')
+    ax1b.plot(412)
+    ax1b.step(scenario_vmaf[0], scenario_vmaf[2], 'y', where='post')
 
-    plt.title('VMAF scenario', fontsize=10)
-    plt.xlabel('video duration')
-    plt.ylabel('VMAF')
+    ax1b.set_title('VMAF scenario', fontsize=10)
+    ax1b.set_xlabel('video duration')
+    ax1b.set_ylabel('VMAF')
 
-    plt.subplot(413, sharex=ax1, sharey=ax1)
-    plt.step(real_vmaf[0], real_vmaf[1], 'g', where='post')
+    ax1c.plot(413)
+    ax1c.step(real_vmaf[0], real_vmaf[1], 'g', where='post')
 
-    plt.title('Real VMAF', fontsize=10)
-    plt.xlabel('video duration')
-    plt.ylabel('VMAF')
+    ax1c.set_title('VMAF played', fontsize=10)
+    ax1c.set_xlabel('video duration')
+    ax1c.set_ylabel('VMAF')
 
-    plt.subplot(414, sharex=ax1, sharey=ax1)
-    plt.step(buff_vmaf[0], buff_vmaf[1], 'b', where='post')
+    ax1d.plot(414)
+    ax1d.step(buff_vmaf[0], buff_vmaf[1], 'b', where='post')
 
-    plt.title('Buffering VMAF', fontsize=10)
-    plt.xlabel('video duration')
-    plt.ylabel('VMAF')
+    ax1d.set_title('VMAF buffered', fontsize=10)
+    ax1d.set_xlabel('video duration')
+    ax1d.set_ylabel('VMAF')
 
-    plt.gcf().set_size_inches(6, 8)
-    plt.tight_layout()
+    fig1.set_size_inches(6, 8)
+    fig1.tight_layout()
 
-    return plt
+    return fig1
