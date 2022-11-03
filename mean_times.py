@@ -20,6 +20,11 @@ def mean_time():
 
     avenge = float(avenge) / (len(assessment) - 1)
 
-    return f"{colours_ids.UNDERLINE}Średni czas między ekranami ankiety:{colours_ids.END}" \
-           f"{colours_ids.OK_GREEN if 2.0 < avenge / 60 < 3.0 else colours_ids.FAIL}" \
-           f" {int(avenge // 60)}m {int(avenge - (avenge // 60 * 60))}s{colours_ids.END}"
+    raw = f"Średni czas między ekranami ankiety: " \
+          f"{int(avenge // 60)}m {int(avenge - (avenge // 60 * 60))}s"
+
+    formatted = f"{colours_ids.UNDERLINE}Średni czas między ekranami ankiety:{colours_ids.END}" \
+                f"{colours_ids.OK_GREEN if 2.0 < avenge / 60 < 3.0 else colours_ids.FAIL}" \
+                f" {int(avenge // 60)}m {int(avenge - (avenge // 60 * 60))}s{colours_ids.END}"
+
+    return [raw, formatted]

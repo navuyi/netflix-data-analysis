@@ -1,3 +1,5 @@
+import os
+
 from PIL import Image
 
 import generate
@@ -15,19 +17,28 @@ def main():
     generate.main()
 
     print(f"{colours_ids.UNDERLINE}ID testera:{colours_ids.END} {TESTER_ID}\n"
-          f"{avenge_answers_time()}\n"
-          f"{mean_time()}\n"
-          f"{extract_scenario()}")
+          f"{avenge_answers_time()[1]}\n"
+          f"{mean_time()[1]}\n"
+          f"{extract_scenario()[1]}")
 
-    scores_distribution().savefig(f"./images/_{TESTER_ID}_scores_distribution.png")
-    vmaf_plot().savefig(f"./images/{TESTER_ID}_vmaf_histograms.png")
-    global_avenge_vmaf_to_score().savefig(f"./images/avenge_vmaf_to_score.png")
+    if not os.path.isdir(f"./output/{TESTER_ID}"):
+        os.mkdir(f"./images/{TESTER_ID}")
 
-    images = [Image.open(f"./images/_{TESTER_ID}_scores_distribution.png"),
-              Image.open(f"./images/{TESTER_ID}_vmaf_histograms.png"),
-              Image.open(f"./images/avenge_vmaf_to_score.png")]
+    with open(f"./output/{TESTER_ID}/{TESTER_ID}_output.txt", "w") as text_file:
+        text_file.write(f"ID testera: {TESTER_ID}\n"
+                        f"{avenge_answers_time()[0]}\n"
+                        f"{mean_time()[0]}\n"
+                        f"{extract_scenario()[0]}")
 
-    [image.show() for image in images]
+    scores_distribution().savefig(f"./output/{TESTER_ID}/{TESTER_ID}_scores_distribution.png")
+    vmaf_plot().savefig(f"./output/{TESTER_ID}/{TESTER_ID}_vmaf_histograms.png")
+    global_avenge_vmaf_to_score().savefig(f"./output/avenge_vmaf_to_score.png")
+
+    images = [Image.open(f"./output/{TESTER_ID}/{TESTER_ID}_scores_distribution.png"),
+              Image.open(f"./output/{TESTER_ID}/{TESTER_ID}_vmaf_histograms.png"),
+              Image.open(f"./output/avenge_vmaf_to_score.png")]
+
+    # [image.show() for image in images]
 
 
 if __name__ == "__main__":

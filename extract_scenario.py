@@ -10,5 +10,10 @@ def extract_scenario():
                    f"where experiment.tester_id=='{TESTER_ID}'")
 
     configuration = json.loads(sql(sql_request)[0][0])
-    return f"{colours_ids.UNDERLINE}Scenariusz:{colours_ids.END} " \
-           f"{configuration['videos'][0]['vmaf_template_scenario']}"
+
+    raw = f"Scenariusz: {configuration['videos'][0]['vmaf_template_scenario']}"
+
+    formatted = f"{colours_ids.UNDERLINE}Scenariusz:{colours_ids.END} " \
+                f"{configuration['videos'][0]['vmaf_template_scenario']}"
+
+    return [raw, formatted]

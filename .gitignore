@@ -1,6 +1,6 @@
 # Global
 *.pdf
-/images
+/output
 /csv
 
 # Byte-compiled / optimized / DLL files

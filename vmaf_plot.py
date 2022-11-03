@@ -71,28 +71,28 @@ def vmaf_plot():
 
     ax1a.set_yticks(np.arange(0, 101, 20))
 
-    ax1a.set_title('VMAF template', fontsize=10)
+    ax1a.set_title(f'VMAF template {TESTER_ID}', fontsize=10)
     ax1a.set_xlabel('video duration')
     ax1a.set_ylabel('VMAF')
 
     ax1b.plot(412)
     ax1b.step(scenario_vmaf[0], scenario_vmaf[2], 'y', where='post')
 
-    ax1b.set_title('VMAF scenario', fontsize=10)
+    ax1b.set_title(f'VMAF scenario {TESTER_ID}', fontsize=10)
     ax1b.set_xlabel('video duration')
     ax1b.set_ylabel('VMAF')
 
     ax1c.plot(413)
     ax1c.step(real_vmaf[0], real_vmaf[1], 'g', where='post')
 
-    ax1c.set_title('VMAF played', fontsize=10)
+    ax1c.set_title(f'VMAF played {TESTER_ID}', fontsize=10)
     ax1c.set_xlabel('video duration')
     ax1c.set_ylabel('VMAF')
 
     ax1d.plot(414)
     ax1d.step(buff_vmaf[0], buff_vmaf[1], 'b', where='post')
 
-    ax1d.set_title('VMAF buffered', fontsize=10)
+    ax1d.set_title(f'VMAF buffered {TESTER_ID}', fontsize=10)
     ax1d.set_xlabel('video duration')
     ax1d.set_ylabel('VMAF')
 

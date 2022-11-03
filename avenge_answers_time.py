@@ -11,6 +11,10 @@ def avenge_answers_time():
 
     avenge = sql(sql_request)[0][0]
 
-    return f"{colours_ids.UNDERLINE}Średni czas odpowiedzi:{colours_ids.END}" \
-           f"{colours_ids.OK_GREEN if 1000 < avenge < 30000 else colours_ids.FAIL}" \
-           f" {format(float(avenge) / 1000, '.2f')}s{colours_ids.END}"
+    raw = f"Średni czas odpowiedzi: " \
+          f"{format(float(avenge) / 1000, '.2f')}s"
+    formatted = f"{colours_ids.UNDERLINE}Średni czas odpowiedzi:{colours_ids.END}" \
+                f"{colours_ids.OK_GREEN if 1000 < avenge < 30000 else colours_ids.FAIL}" \
+                f" {format(float(avenge) / 1000, '.2f')}s{colours_ids.END}"
+
+    return [raw, formatted]
