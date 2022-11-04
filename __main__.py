@@ -7,8 +7,10 @@ from __config__ import TESTER_ID
 from avenge_answers_time import avenge_answers_time
 from extract_scenario import extract_scenario
 from global_avenge_vmaf_to_score import global_avenge_vmaf_to_score
+from global_avenge_vmaf_to_score_colored import global_avenge_vmaf_to_score_colored
 from mean_times import mean_time
-from scores_distribution import scores_distribution
+from scores_distribution_per_user import scores_distribution_per_user
+from global_scores_distribution import global_scores_distribution
 from text_colours import colours_ids
 from vmaf_plot import vmaf_plot
 
@@ -30,15 +32,11 @@ def main():
                         f"{mean_time()[0]}\n"
                         f"{extract_scenario()[0]}")
 
-    scores_distribution().savefig(f"./output/{TESTER_ID}/{TESTER_ID}_scores_distribution.png")
+    scores_distribution_per_user().savefig(f"./output/{TESTER_ID}/{TESTER_ID}_scores_distribution.png")
     vmaf_plot().savefig(f"./output/{TESTER_ID}/{TESTER_ID}_vmaf_histograms.png")
     global_avenge_vmaf_to_score().savefig(f"./output/avenge_vmaf_to_score.png")
-
-    images = [Image.open(f"./output/{TESTER_ID}/{TESTER_ID}_scores_distribution.png"),
-              Image.open(f"./output/{TESTER_ID}/{TESTER_ID}_vmaf_histograms.png"),
-              Image.open(f"./output/avenge_vmaf_to_score.png")]
-
-    # [image.show() for image in images]
+    # global_avenge_vmaf_to_score_colored().savefig(f"./output/avenge_vmaf_to_score_colored.png")
+    global_scores_distribution().savefig(f"./output/global_scores_distribution.png")
 
 
 if __name__ == "__main__":
