@@ -32,7 +32,9 @@ def main():
 
     scores_distribution_per_user().savefig(f"./output/{TESTER_ID}/{TESTER_ID}_scores_distribution.png")
     vmaf_plot().savefig(f"./output/{TESTER_ID}/{TESTER_ID}_vmaf_histograms.png")
-    global_avenge_vmaf_to_score().savefig(f"./output/avenge_vmaf_to_score.png")
+    global_avenge_vmaf_to_score(150).savefig(f"./output/avenge_vmaf_to_score_150s.png")
+    global_avenge_vmaf_to_score(60).savefig(f"./output/avenge_vmaf_to_score_60s.png")
+    global_avenge_vmaf_to_score(30).savefig(f"./output/avenge_vmaf_to_score_30s.png")
     # global_avenge_vmaf_to_score_colored().savefig(f"./output/avenge_vmaf_to_score_colored.png")
     global_scores_distribution().savefig(f"./output/global_scores_distribution.png")
 

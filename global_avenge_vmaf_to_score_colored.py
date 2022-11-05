@@ -3,7 +3,7 @@ import sqlite3
 import matplotlib.pyplot as plt
 import numpy as np
 
-from __config__ import DATABASES_DIR, DB_NAMES
+from __config__ import DATABASES_DIR, DB_NAMES, TESTER_ID
 
 
 def sql(request, database):
@@ -88,3 +88,6 @@ def global_avenge_vmaf_to_score_colored():
     ax3.set_ylabel('User score')
 
     return fig3
+
+
+global_avenge_vmaf_to_score_colored().savefig(f"./output/global_avenge_vmaf_to_score_colored")
