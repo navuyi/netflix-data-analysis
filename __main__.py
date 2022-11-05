@@ -1,13 +1,11 @@
 import os
 
-from PIL import Image
-
 import generate
 from __config__ import TESTER_ID
 from avenge_answers_time import avenge_answers_time
 from extract_scenario import extract_scenario
 from global_avenge_vmaf_to_score import global_avenge_vmaf_to_score
-from global_avenge_vmaf_to_score_colored import global_avenge_vmaf_to_score_colored
+# from global_avenge_vmaf_to_score_colored import global_avenge_vmaf_to_score_colored
 from mean_times import mean_time
 from scores_distribution_per_user import scores_distribution_per_user
 from global_scores_distribution import global_scores_distribution
@@ -24,7 +22,7 @@ def main():
           f"{extract_scenario()[1]}")
 
     if not os.path.isdir(f"./output/{TESTER_ID}"):
-        os.mkdir(f"./images/{TESTER_ID}")
+        os.mkdir(f"./output/{TESTER_ID}")
 
     with open(f"./output/{TESTER_ID}/{TESTER_ID}_output.txt", "w") as text_file:
         text_file.write(f"ID testera: {TESTER_ID}\n"
