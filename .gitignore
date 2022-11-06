@@ -1,6 +1,5 @@
 # Global
 *.pdf
-/output
 /csv
 /tmp
 
