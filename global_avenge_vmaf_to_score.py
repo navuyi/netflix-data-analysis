@@ -8,7 +8,6 @@ from __config__ import DATABASES_DIR, DB_NAMES
 
 
 def sql(request, database):
-    # TODO input range of time to for averaging VMAF e.g. last 30s, 20s, 10s
     response = []
 
     database.execute(request)
