@@ -67,6 +67,3 @@ def global_avenge_vmaf_to_score(scope):
     ax3.set_ylabel('Users score')
 
     return fig3
-
-
-global_avenge_vmaf_to_score(10).show()

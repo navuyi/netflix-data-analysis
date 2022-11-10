@@ -11,4 +11,7 @@ CONNECTION = CONN.cursor()
 
 CONNECTION.execute(f"select tester_id from experiment")
 
-TESTER_ID = [data for data in CONNECTION.fetchall()][-1][0]
+TESTERS_ID = []
+
+for data in CONNECTION.fetchall():
+    TESTERS_ID.append(data[0])

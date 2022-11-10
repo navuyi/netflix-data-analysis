@@ -3,7 +3,7 @@ import sqlite3
 import matplotlib.pyplot as plt
 import numpy as np
 
-from __config__ import DATABASES_DIR, DB_NAMES, TESTER_ID
+from __config__ import DATABASES_DIR, DB_NAMES
 
 
 def sql(request, database):

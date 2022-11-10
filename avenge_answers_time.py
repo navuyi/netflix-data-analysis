@@ -1,9 +1,8 @@
-from __config__ import TESTER_ID
 from sql import sql
 from text_colours import colours_ids
 
 
-def avenge_answers_time():
+def avenge_answers_time(TESTER_ID):
     sql_request = f"select avg(duration) from assessment " \
                   f"inner join experiment " \
                   f"on assessment.video_id = experiment.id " \

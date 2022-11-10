@@ -3,11 +3,10 @@ import json
 import matplotlib.pyplot as plt
 import numpy as np
 
-from __config__ import TESTER_ID
 from sql import sql
 
 
-def vmaf_buff_histogram():
+def vmaf_buff_histogram(TESTER_ID):
     sql_request = f"select playback_data.buffering_vmaf from playback_data " \
                   f"inner join experiment " \
                   f"on playback_data.video_id = experiment.id " \
@@ -21,12 +20,12 @@ def vmaf_buff_histogram():
     return [x_values, y_values]
 
 
-def vmaf_real_histogram():
+def vmaf_real_histogram(TESTER_ID):
     sql_request = f"select playback_data.playing_vmaf from playback_data " \
                   f"inner join experiment " \
                   f"on playback_data.video_id = experiment.id " \
                   f"where experiment.tester_id=='{TESTER_ID}' " \
-                  f"and playback_data.rendering_state=='Playing' "
+                  f"and playback_data.rendering_state=='Playing'"
 
     data = sql(sql_request)
     x_values = np.arange(0, len(data), 1)
@@ -35,7 +34,7 @@ def vmaf_real_histogram():
     return [x_values, y_values]
 
 
-def vmaf_scenario_and_diff_histogram():
+def vmaf_scenario_and_diff_histogram(TESTER_ID):
     sql_request = (f"select configuration from experiment "
                    f"where experiment.tester_id=='{TESTER_ID}'")
 
@@ -52,10 +51,10 @@ def vmaf_scenario_and_diff_histogram():
     return [x_values, y_values_template, y_values_scenario, y_values_diff]
 
 
-def vmaf_plot():
-    scenario_vmaf = vmaf_scenario_and_diff_histogram()
-    real_vmaf = vmaf_real_histogram()
-    buff_vmaf = vmaf_buff_histogram()
+def vmaf_plot(TESTER_ID):
+    scenario_vmaf = vmaf_scenario_and_diff_histogram(TESTER_ID)
+    real_vmaf = vmaf_real_histogram(TESTER_ID)
+    buff_vmaf = vmaf_buff_histogram(TESTER_ID)
 
     fig1, (ax1a, ax1b, ax1c, ax1d) = plt.subplots(nrows=4, ncols=1, sharex='all', sharey='all')
 

@@ -1,16 +1,15 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from __config__ import TESTER_ID
 from assessment_data import assessment_data
 
 fields = ['id', 'value']
 names = {5: 'excellent', 4: 'good', 3: 'average', 2: 'poor', 1: 'bad'}
 
 
-def scores_distribution_per_user():
+def scores_distribution_per_user(TESTER_ID):
     distribution = {'bad': 0, 'poor': 0, 'average': 0, 'good': 0, 'excellent': 0}
-    data = assessment_data(fields)
+    data = assessment_data(fields, TESTER_ID)
 
     for data in data:
         distribution[names[data['value']]] += 1

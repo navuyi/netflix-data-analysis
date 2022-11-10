@@ -1,8 +1,7 @@
-from __config__ import TESTER_ID
 from sql import sql
 
 
-def assessment_data(fields):
+def assessment_data(fields, TESTER_ID):
     response = []
 
     fields_string = f'assessment.' + f', assessment.'.join([str(elem) for elem in fields])
