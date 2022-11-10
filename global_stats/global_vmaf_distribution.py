@@ -1,5 +1,3 @@
-import math
-
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -33,9 +31,6 @@ def real_vmaf_distribution():
         '50': 0, '60': 0, '70': 0,
         '80': 0, '90': 0, '100': 0,
     }
-
-    suma = 0
-    count = 0
 
     for TESTER_ID in TESTERS_ID:
         used_vmafs.append(vmaf_scenario_and_diff_histogram(TESTER_ID)[2])
