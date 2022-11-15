@@ -43,7 +43,7 @@ def global_avenge_vmaf_to_score(scope):
 
             sql_request = f"select avg(playback_data.playing_vmaf) from playback_data " \
                           f"where playback_data.rendering_state=='Playing' " \
-                          f"and playback_data.timestamp between '{start}' AND '{timestamp['timestamp']}'"
+                          f"and playback_data.timestamp between '{start}' and '{timestamp['timestamp']}'"
 
             vmaf_to_score.append({"avg_vmaf": sql(sql_request, connection)[0][0], "score": timestamp['value']})
 
