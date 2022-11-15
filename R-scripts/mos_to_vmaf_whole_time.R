@@ -8,8 +8,6 @@ testers_id <- dbGetQuery(mydb, 'SELECT id FROM experiment')
 
 vec_scores <- c()
 vec_vmaf <- c()
-
-
 vmaf_average <- c()
 
 for (tester_id in testers_id[['id']]) {
@@ -47,9 +45,9 @@ vmaf_average <- data.frame(vmaf_average)
 
 vec_vmaf <- rescale(unlist(vmaf_average), to = c(0, 1), from = range(20, 100))
 
-vmaf_group_by_1 <- data.frame(vec_vmaf, vec_scores)
+vec_vmaf <- data.frame(vec_vmaf, vec_scores)
 
 ggplot() +
-  geom_point(data=vmaf_group_by_1, aes(x=vec_vmaf, y=vec_scores))
+  geom_point(data=vec_vmaf, aes(x=vec_vmaf, y=vec_scores))
 
 dbDisconnect(mydb)
