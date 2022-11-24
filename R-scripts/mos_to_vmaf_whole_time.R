@@ -70,10 +70,10 @@ model_lin <- lm(mos ~ vmf, data_ag)
 # plot(model_lin)
 summary(model_lin)
 
-ggplot(data_ag, aes(vmf, mos)) + 
-  geom_point() + 
-  geom_abline(intercept = as.numeric(model_lin$coefficients[1]), 
-              slope = as.numeric(model_lin$coefficients[2]), color = "red")
+# ggplot(data_ag, aes(vmf, mos)) + 
+#   geom_point() + 
+#   geom_abline(intercept = as.numeric(model_lin$coefficients[1]), 
+#               slope = as.numeric(model_lin$coefficients[2]), color = "red")
 
 # power model
 data_power <- data_ag %>%
@@ -83,10 +83,10 @@ model_pow <- lm(mos ~ vmf, data_power)
 # plot(model_pow)
 summary(model_pow)
 
-ggplot(data_power, aes(vmf, mos)) + 
-  geom_point() + 
-  geom_abline(intercept = as.numeric(model_pow$coefficients[1]), 
-              slope = as.numeric(model_pow$coefficients[2]), color = "red")
+# ggplot(data_power, aes(vmf, mos)) + 
+#   geom_point() + 
+#   geom_abline(intercept = as.numeric(model_pow$coefficients[1]), 
+#               slope = as.numeric(model_pow$coefficients[2]), color = "red")
 
 # logit model
 data_logit <- data_ag %>%
@@ -95,21 +95,21 @@ model_logit <- lm(mos ~ vmf, data_logit)
 # plot(model_logit)
 summary(model_logit)
 
-ggplot(data_logit, aes(vmf, mos)) + 
-  geom_point() + 
-  geom_abline(intercept = as.numeric(model_logit$coefficients[1]), 
-              slope = as.numeric(model_logit$coefficients[2]), color = "red")
+# ggplot(data_logit, aes(vmf, mos)) + 
+#   geom_point() + 
+#   geom_abline(intercept = as.numeric(model_logit$coefficients[1]), 
+#               slope = as.numeric(model_logit$coefficients[2]), color = "red")
 
 ggplot(data_ag, aes(vmf, mos)) + 
   geom_point() + 
   geom_function(fun = ~ as.numeric(model_lin$coefficients[1]) + 
                   as.numeric(model_lin$coefficients[2])*(.x), color = "red") +
-  geom_function(fun = ~ exp(as.numeric(model_pow$coefficients[1])) * 
-                (.x)^as.numeric(model_pow$coefficients[2]), color = "green") +  
+  geom_function(fun = ~ exp(as.numeric(model_pow$coefficients[1])) *
+                (.x)^as.numeric(model_pow$coefficients[2]), color = "green") +
   geom_function(fun = ~ exp(as.numeric(model_logit$coefficients[1]) +  
                   as.numeric(model_logit$coefficients[2]) * (.x)) / 
                     (1 + exp(as.numeric(model_logit$coefficients[1]) +  
                                as.numeric(model_logit$coefficients[2]) * (.x))), 
-                color = "black")
+                color = "blue")
   
 dbDisconnect(mydb)

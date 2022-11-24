@@ -4,6 +4,11 @@ import sqlite3
 DATABASES_DIR = "./databases"
 CSV_DIR = "./csv"
 DB_NAMES = os.listdir(f"./{DATABASES_DIR}")
+
+for db in DB_NAMES:
+    if not db.endswith(".db"):
+        os.remove(f"./{DATABASES_DIR}/{db}")
+
 # DB_NAME = os.listdir(f"./{DATABASES_DIR}")[0]
 DB_NAME = 'database.db'
 CONN = sqlite3.connect(f"{DATABASES_DIR}/{DB_NAME}")

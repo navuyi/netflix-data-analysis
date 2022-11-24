@@ -18,7 +18,7 @@ from vmaf_plot import vmaf_plot
 
 
 def main():
-    generate.main()
+    # generate.main()
 
     global_avenge_vmaf_to_score(150).savefig(f"./output/avenge_vmaf_to_score_150s.png")
     global_avenge_vmaf_to_score(60).savefig(f"./output/avenge_vmaf_to_score_60s.png")
