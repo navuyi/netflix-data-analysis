@@ -4,13 +4,13 @@ from sql import sql
 from text_colours import colours_ids
 
 
-def extract_scenario(TESTER_ID):
+def extract_scenario(tester_id, video_index):
     sql_request = (f"select configuration from experiment "
-                   f"where experiment.tester_id=='{TESTER_ID}'")
+                   f"where experiment.tester_id=='{tester_id}'")
     scenarios_json = open('important_files/scenarios.json')
 
     configuration = json.loads(sql(sql_request)[0][0])
-    current_scenario = configuration['videos'][0]['vmaf_template_scenario']
+    current_scenario = configuration['videos'][video_index]['vmaf_template_scenario']
     current_scenario_symbol = ''
     scenarios = json.load(scenarios_json)
 

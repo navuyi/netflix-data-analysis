@@ -2,11 +2,11 @@ from sql import sql
 from text_colours import colours_ids
 
 
-def avenge_answers_time(TESTER_ID):
+def avenge_answers_time(video_id):
     sql_request = f"select avg(duration) from assessment " \
-                  f"inner join experiment " \
-                  f"on assessment.video_id = experiment.id " \
-                  f"where experiment.tester_id=='{TESTER_ID}'"
+                  f"inner join video " \
+                  f"on assessment.video_id = video.id " \
+                  f"where video.id=='{video_id}'"
 
     avenge = sql(sql_request)[0][0]
 

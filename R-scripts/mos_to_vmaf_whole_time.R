@@ -12,8 +12,8 @@ vec_vmaf <- c()
 vmaf_average <- c()
 
 for (tester_id in testers_id[['id']]) {
-  sql_request <- paste0('SELECT value, started, timestamp FROM assessment WHERE video_id == ',
-                        tester_id)
+  sql_request <- paste0('SELECT value, started, timestamp FROM assessment WHERE video_id == (SELECT id FROM video WHERE experiment_id == ',
+                        tester_id, ')')
   
   assessments <- dbGetQuery(mydb, sql_request)
   vec_scores <- append(vec_scores, rescale(assessments[['value']],

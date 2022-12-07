@@ -5,10 +5,10 @@ from assessment_data import assessment_data
 from text_colours import colours_ids
 
 
-def mean_time(TESTER_ID):
+def mean_time(video_id):
     fields = ['id', 'started', 'timestamp', 'duration']
 
-    assessment = assessment_data(fields, TESTER_ID)
+    assessment = assessment_data(fields, video_id)
     avenge = 0
 
     for first_time, second_time in zip(assessment[0:19], assessment[1:20]):

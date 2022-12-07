@@ -1,4 +1,0 @@
-ID testera: 203
-Średni czas odpowiedzi: 3.43s
-Średni czas między ekranami ankiety: 2m 28s
-Scenariusz: [50, 50, 70, 90, 100, 90, 50, 30, 40, 80, 70, 80, 100, 70, 60, 40, 20, 60, 80, 100, 90, 60, 40, 30]
