@@ -18,7 +18,7 @@ def sql(request, database):
     return response
 
 
-def global_avenge_vmaf_to_score(scope):
+def global_average_vmaf_to_score(scope):
     vmaf_to_score = []
 
     for db_name in DB_NAMES:
@@ -62,7 +62,7 @@ def global_avenge_vmaf_to_score(scope):
     ax3.axis([20, 100, 1, 5])
     ax3.set_yticks(np.arange(1, 6, 1))
 
-    ax3.set_title(f'Global avenge VMAF to score \u0394t={scope}s', fontsize=10)
+    ax3.set_title(f'Global average VMAF to score \u0394t={scope}s', fontsize=10)
     ax3.set_xlabel('VMAF')
     ax3.set_ylabel('Users score')
 

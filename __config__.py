@@ -3,7 +3,7 @@ import sqlite3
 
 DATABASES_DIR = "./databases"
 CSV_DIR = "./csv"
-DB_NAMES = os.listdir(f"./{DATABASES_DIR}")
+DB_NAMES = os.listdir(f"{DATABASES_DIR}")
 
 for db in DB_NAMES:
     if not db.endswith(".db"):

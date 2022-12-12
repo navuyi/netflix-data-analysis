@@ -17,7 +17,7 @@ def sql(request, database):
     return response
 
 
-def global_avenge_vmaf_to_score_colored():
+def global_average_vmaf_to_score_colored():
     x = []
     y = []
 
@@ -83,11 +83,11 @@ def global_avenge_vmaf_to_score_colored():
     ax3.axis([20, 100, 1, 5])
     ax3.set_yticks(np.arange(1, 6, 1))
 
-    ax3.set_title('Global avenge VMAF to score', fontsize=10)
+    ax3.set_title('Global average VMAF to score', fontsize=10)
     ax3.set_xlabel('VMAF')
     ax3.set_ylabel('User score')
 
     return fig3
 
 
-global_avenge_vmaf_to_score_colored().savefig(f"./output/global_avenge_vmaf_to_score_colored")
+global_average_vmaf_to_score_colored().savefig(f"./output/global_average_vmaf_to_score_colored")

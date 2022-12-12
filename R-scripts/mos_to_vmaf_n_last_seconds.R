@@ -12,9 +12,9 @@ vmaf_average <- c()
 last_n_seconds <- 15
 
 for (tester_id in testers_id[['id']]) {
-  sql_request <- paste0('SELECT value, started, timestamp ',
-                        'FROM assessment WHERE video_id == ',
-                        tester_id)
+  sql_request <- paste0('SELECT value, started, timestamp FROM assessment 
+                        WHERE video_id == (SELECT id FROM video 
+                        WHERE experiment_id == ', tester_id, ')')
   
   assessments <- dbGetQuery(mydb, sql_request)
   vec_scores <- append(vec_scores, rescale(assessments[['value']],
@@ -98,6 +98,8 @@ ggplot(data_ag, aes(vmf, mos)) +
                               as.numeric(model_logit$coefficients[2]) * (.x)) / 
                   (1 + exp(as.numeric(model_logit$coefficients[1]) +  
                              as.numeric(model_logit$coefficients[2]) * (.x))), 
-                color = "blue")
+                color = "blue") +
+  ggtitle(paste0('Average VMAF to MOS, \u0394t=', last_n_seconds), ) +
+  theme(plot.title = element_text(hjust = 0.5))
 
 dbDisconnect(mydb)

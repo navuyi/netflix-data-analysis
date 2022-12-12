@@ -4,12 +4,12 @@ import matplotlib.pyplot as plt
 
 # import generate
 from __config__ import TESTERS_ID
-from avenge_answers_time import avenge_answers_time
+from average_answers_time import average_answers_time
 from extract_scenario import extract_scenario
 from global_vmaf_distribution import global_vmaf_distribution
 from scenarios_usage_stats import scenarios_usage_stats
-from global_avenge_vmaf_to_score import global_avenge_vmaf_to_score
-# from global_avenge_vmaf_to_score_colored import global_avenge_vmaf_to_score_colored
+from global_average_vmaf_to_score import global_average_vmaf_to_score
+# from global_average_vmaf_to_score_colored import global_average_vmaf_to_score_colored
 from mean_times import mean_time
 from scores_distribution_per_user import scores_distribution_per_user
 from global_scores_distribution import global_scores_distribution
@@ -21,13 +21,13 @@ from vmaf_plot import vmaf_plot
 def main():
     # generate.main()
 
-    global_avenge_vmaf_to_score(150).savefig(f"./output/avenge_vmaf_to_score_150s.png")
-    global_avenge_vmaf_to_score(60).savefig(f"./output/avenge_vmaf_to_score_60s.png")
-    global_avenge_vmaf_to_score(30).savefig(f"./output/avenge_vmaf_to_score_30s.png")
-    # global_avenge_vmaf_to_score_colored().savefig(f"./output/avenge_vmaf_to_score_colored.png")
-    global_scores_distribution().savefig(f"./output/global_scores_distribution.png")
-    scenarios_usage_stats().savefig(f"./output/scenarios_usage_stats.png")
-    global_vmaf_distribution().savefig(f"./output/global_vmaf_distribution_from_scenario.png")
+    global_average_vmaf_to_score(150).savefig(f"./output/functions_mapping/points_plots/average_vmaf_to_score_150s.png")
+    global_average_vmaf_to_score(60).savefig(f"./output/functions_mapping/points_plots/average_vmaf_to_score_60s.png")
+    global_average_vmaf_to_score(30).savefig(f"./output/functions_mapping/points_plots/average_vmaf_to_score_30s.png")
+    # global_average_vmaf_to_score_colored().savefig(f"./output/average_vmaf_to_score_colored.png")
+    global_scores_distribution().savefig(f"./output/stats/global_scores_distribution.png")
+    scenarios_usage_stats().savefig(f"./output/stats/scenarios_usage_stats.png")
+    global_vmaf_distribution().savefig(f"./output/stats/global_vmaf_distribution_from_scenario.png")
 
     plt.close('all')
 
@@ -53,7 +53,7 @@ def main():
 
             with open(f"./output/{TESTER_ID}_{video_id[0]}/{TESTER_ID}_{video_id[0]}_output.txt", "w") as text_file:
                 text_file.write(f"ID testera: {TESTER_ID}_{video_id[0]}\n"
-                                f"{avenge_answers_time(video_id[0])[0]}\n"
+                                f"{average_answers_time(video_id[0])[0]}\n"
                                 f"{mean_time(video_id[0])[0]}\n"
                                 f"{extract_scenario(TESTER_ID, video_id[1])[0]}")
 
