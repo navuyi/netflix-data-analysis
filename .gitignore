@@ -1,7 +1,9 @@
 # Global
 *.pdf
-/csv
-/tmp
+/csv/
+/tmp/
+/databases/
+*.db
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

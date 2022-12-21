@@ -26,7 +26,7 @@ def global_average_vmaf_to_score(scope):
         connection = conn.cursor()
 
         sql_request = f"select assessment.timestamp, assessment.value " \
-                      f"from assessment "
+                      f"from assessment"
 
         assessment = []
         sql_response = sql(sql_request, connection)

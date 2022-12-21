@@ -1,0 +1,4 @@
+ID testera: 220_26
+Średni czas odpowiedzi: 5.06s
+Średni czas między ekranami ankiety: 2m 15s
+Scenariusz: [90, 50, 40, 70, 30, 60, 60, 80, 100, 80, 70, 100, 90, 50, 40, 20]
