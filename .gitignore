@@ -1,8 +1,8 @@
 # Global
 *.pdf
-/csv/
-/tmp/
-/databases/
+csv/
+tmp/
+databases/
 *.db
 
 # Byte-compiled / optimized / DLL files
