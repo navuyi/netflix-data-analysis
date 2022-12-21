@@ -9,8 +9,10 @@ for db in DB_NAMES:
     if not db.endswith(".db"):
         os.remove(f"./{DATABASES_DIR}/{db}")
 
+DB_NAMES = os.listdir(f"{DATABASES_DIR}")
+
 # DB_NAME = os.listdir(f"./{DATABASES_DIR}")[0]
-DB_NAME = 'database_seniors.db'
+DB_NAME = 'database.db'
 CONN = sqlite3.connect(f"{DATABASES_DIR}/{DB_NAME}")
 CONNECTION = CONN.cursor()
 

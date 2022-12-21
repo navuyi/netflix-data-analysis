@@ -55,7 +55,7 @@ vec_vmaf <- data.frame(vec_vmaf, vec_scores)
 vec_vmaf %>%
   mutate(vmf_cat = floor(vec_vmaf*20)) %>%
   group_by(vmf_cat) %>%
-  summarise(vmf = mean(vec_vmaf), mos = mean(vec_scores)) %>%
+  summarise(vmf = mean(vec_vmaf), mos = mean(vec_scores))
   # ggplot(aes(vmf, mos)) + 
   #   geom_point() + 
   #   geom_abline(intercept = 0, slope = 1, color = "red")
