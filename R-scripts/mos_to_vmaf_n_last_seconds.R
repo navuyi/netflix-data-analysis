@@ -3,13 +3,13 @@ library(scales)
 library(ggplot2)
 library(dplyr)
 
-mydb <- dbConnect(RSQLite::SQLite(), "../databases/database.db")
+mydb <- dbConnect(RSQLite::SQLite(), "./databases/database.db")
 testers_id <- dbGetQuery(mydb, 'SELECT id FROM experiment')
 
 vec_scores <- c()
 vec_vmaf <- c()
 vmaf_average <- c()
-last_n_seconds <- 15
+last_n_seconds <- 150
 
 for (tester_id in testers_id[['id']]) {
   sql_request <- paste0('SELECT value, started, timestamp FROM assessment 
@@ -51,7 +51,7 @@ vec_vmaf <- data.frame(vec_vmaf, vec_scores)
 data_ag <- vec_vmaf %>%
   mutate(vmf_cat = floor(vec_vmaf*20)) %>%
   group_by(vmf_cat) %>%
-  summarise(vmf = mean(vec_vmaf), mos = mean(vec_scores))
+  summarise(vmf = mean(vec_vmaf), mos = mean(vec_scores), n = n())
 
 # linear model
 model_lin <- lm(mos ~ vmf, data_ag)
@@ -67,7 +67,7 @@ summary(model_lin)
 data_power <- data_ag %>%
   mutate(vmf = log(vmf)) %>%
   mutate(mos = log(mos))
-model_pow <- lm(mos ~ vmf, data_power)
+model_pow <- lm(mos -1 ~ vmf, data_power)
 # plot(model_pow)
 summary(model_pow)
 
@@ -78,7 +78,7 @@ summary(model_pow)
 
 # logit model
 data_logit <- data_ag %>%
-  mutate(mos = log(mos / (1 - mos)))
+    mutate(mos = log(mos / (1 - mos)))
 model_logit <- lm(mos ~ vmf, data_logit)
 # plot(model_logit)
 summary(model_logit)
@@ -88,7 +88,7 @@ summary(model_logit)
 #   geom_abline(intercept = as.numeric(model_logit$coefficients[1]), 
 #               slope = as.numeric(model_logit$coefficients[2]), color = "red")
 
-ggplot(data_ag, aes(vmf, mos)) + 
+ggplot(data_ag, aes(vmf, mos, color = n)) + 
   geom_point() + 
   geom_function(fun = ~ as.numeric(model_lin$coefficients[1]) + 
                   as.numeric(model_lin$coefficients[2])*(.x), color = "red") +
@@ -100,6 +100,26 @@ ggplot(data_ag, aes(vmf, mos)) +
                              as.numeric(model_logit$coefficients[2]) * (.x))), 
                 color = "blue") +
   ggtitle(paste0('Average VMAF to MOS, \u0394t=', last_n_seconds), ) +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) + 
+  xlim(c(0, 1))
+
+data_ag %>%
+  mutate(n = ifelse(n > 6, 7, n)) %>%
+  mutate(n = as.factor(n)) %>%
+  ggplot(aes(vmf, mos, shape = n)) + 
+    geom_point() + 
+    geom_function(fun = ~ as.numeric(model_lin$coefficients[1]) + 
+                    as.numeric(model_lin$coefficients[2])*(.x), color = "red") +
+    geom_function(fun = ~ exp(as.numeric(model_pow$coefficients[1])) *
+                    (.x)^as.numeric(model_pow$coefficients[2]), color = "green") +
+    geom_function(fun = ~ exp(as.numeric(model_logit$coefficients[1]) +  
+                                as.numeric(model_logit$coefficients[2]) * (.x)) / 
+                    (1 + exp(as.numeric(model_logit$coefficients[1]) +  
+                               as.numeric(model_logit$coefficients[2]) * (.x))), 
+                  color = "blue") +
+    ggtitle(paste0('Average VMAF to MOS, \u0394t=', last_n_seconds), ) +
+    theme(plot.title = element_text(hjust = 0.5)) + 
+    xlim(c(0, 1))
+
 
 dbDisconnect(mydb)
